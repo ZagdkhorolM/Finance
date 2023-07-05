@@ -32,7 +32,7 @@ var financeController = (function () {
     this.value = value;
   };
   var data = {
-    allitems: {
+    items: {
       inc: [],
       exp: [],
     },
@@ -41,15 +41,20 @@ var financeController = (function () {
       exp: 0,
     },
   };
+  return {
+    addItem: function (type, desc, val) {
+      console.log("Item added...");
+    },
+  };
 })();
 
 var appController = (function (uiController, financeController) {
   var DOM = uiController.getDOMstrings();
   var ctrlAddItem = function () {
     // 1. Оруулах өгөгдөл өө олно
-    console.log(uiController.getInput());
+    var input = uiController.getInput();
     // 2. Олж авсан өгөгдөлүүдээ санхүүгийн контроллерт хадгална.
-
+    financeController.addItem();
     // 3. Олж авсан өгөгдөлүүдээ веб дээрээ тохирох хэсэгт гаргана.
     // 4. Төсвийг тооцоолно.
     // 5. Эцсийн үлдэгдэл, тооцоог дэлгэцэнд гаргана.
@@ -72,7 +77,6 @@ var appController = (function (uiController, financeController) {
   return {
     init: function () {
       console.log("App started...");
-      setupEventListeners;
     },
   };
 })(uiController, financeController);
