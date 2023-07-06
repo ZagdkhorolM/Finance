@@ -1,8 +1,9 @@
+// Оролт
 var uiController = (function () {
   var DOMstrings = {
     inputType: ".add__type",
-    inputDescription: ".add__description",
-    inputValue: ".add__value",
+    inputDesc: ".add__description",
+    inputVal: ".add__value",
     addBtn: ".add__btn",
   };
 
@@ -10,8 +11,8 @@ var uiController = (function () {
     getInput: function () {
       return {
         type: document.querySelector(DOMstrings.inputType).value,
-        description: document.querySelector(DOMstrings.inputDescription).value,
-        value: document.querySelector(DOMstrings.inputValue).value,
+        description: document.querySelector(DOMstrings.inputDesc).value,
+        value: document.querySelector(DOMstrings.inputVal).value,
       };
     },
     getDOMstrings: function () {
@@ -20,6 +21,7 @@ var uiController = (function () {
   };
 })();
 
+// Санхүү
 var financeController = (function () {
   var Income = function (id, description, value) {
     this.id = id;
@@ -31,8 +33,9 @@ var financeController = (function () {
     this.description = description;
     this.value = value;
   };
+
   var data = {
-    items: {
+    allItems: {
       inc: [],
       exp: [],
     },
@@ -41,42 +44,33 @@ var financeController = (function () {
       exp: 0,
     },
   };
-  return {
-    addItem: function (type, desc, val) {
-      console.log("Item added...");
-    },
-  };
 })();
 
+// Удирдлага
 var appController = (function (uiController, financeController) {
-  var DOM = uiController.getDOMstrings();
   var ctrlAddItem = function () {
-    // 1. Оруулах өгөгдөл өө олно
-    var input = uiController.getInput();
-    // 2. Олж авсан өгөгдөлүүдээ санхүүгийн контроллерт хадгална.
-    financeController.addItem();
-    // 3. Олж авсан өгөгдөлүүдээ веб дээрээ тохирох хэсэгт гаргана.
-    // 4. Төсвийг тооцоолно.
-    // 5. Эцсийн үлдэгдэл, тооцоог дэлгэцэнд гаргана.
+    // 1. Оруулах өгөгдлийг дэлгэцнээс олж авна.
+    console.log(uiController.getInput());
+    // 2.
+    // 3.
+    // 4.
+    // 5.
   };
-
   var setupEventListeners = function () {
     var DOM = uiController.getDOMstrings();
-
     document.querySelector(DOM.addBtn).addEventListener("click", function () {
       ctrlAddItem();
     });
 
     document.addEventListener("keypress", function (event) {
-      var DOM = uiController.getDOMstrings();
-      if (event.keyCode === 13 || event.witch === 13) {
+      if (event.keyCode === 13 || event.which === 13) {
         ctrlAddItem();
       }
     });
   };
   return {
     init: function () {
-      console.log("App started...");
+      setupEventListeners();
     },
   };
 })(uiController, financeController);
